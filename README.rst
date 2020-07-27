@@ -1,6 +1,8 @@
 Flask-User v0.6
 ===============
 
+Modified for Docassemble.
+
 .. attention::
 
     The documentation has moved to http://flask-user.readthedocs.io/en/v0.6

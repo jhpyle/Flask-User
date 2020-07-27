@@ -4,8 +4,8 @@ from flask import Flask, render_template_string, request
 from flask_babel import Babel
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import login_required, SQLAlchemyAdapter, UserManager, UserMixin
-from flask_user import roles_required, confirm_email_required
+from docassemble_flask_user import login_required, SQLAlchemyAdapter, UserManager, UserMixin
+from docassemble_flask_user import roles_required, confirm_email_required
 
 
 app = Flask(__name__)

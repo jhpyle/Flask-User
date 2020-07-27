@@ -3,7 +3,7 @@ from flask import Flask, redirect, render_template_string, request, url_for
 from flask_babel import Babel
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import confirm_email_required, current_user, login_required, UserManager, UserMixin, SQLAlchemyAdapter
+from docassemble_flask_user import confirm_email_required, current_user, login_required, UserManager, UserMixin, SQLAlchemyAdapter
 
 
 def _call_or_get(function_or_property):

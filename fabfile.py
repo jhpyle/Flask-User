@@ -9,19 +9,19 @@ def runserver():
 @task
 def test():
     # Requires "pip install pytest"
-    local('py.test flask_user/tests/')
+    local('py.test docassemble_flask_user/tests/')
 
 @task
 def coverage():
     # Requires "pip install pytest-coverage"
-    local('py.test --cov flask_user --cov-report term-missing --cov-config flask_user/tests/.coveragerc flask_user/tests/')
+    local('py.test --cov docassemble_flask_user --cov-report term-missing --cov-config docassemble_flask_user/tests/.coveragerc docassemble_flask_user/tests/')
 
 @task
 def update_babel():
-    local('pybabel extract -F flask_user/translations/babel.cfg -k lazy_gettext -c NOTE -o flask_user/translations/flask_user.pot flask_user flask_user')
+    local('pybabel extract -F docassemble_flask_user/translations/babel.cfg -k lazy_gettext -c NOTE -o docassemble_flask_user/translations/flask_user.pot docassemble_flask_user docassemble_flask_user')
     for code in ('de', 'en', 'es', 'fa', 'fi', 'fr', 'it', 'nl', 'ru', 'sv', 'tr', 'zh'):
-        local('pybabel update -i flask_user/translations/flask_user.pot --domain=flask_user --output-dir flask_user/translations -l '+code)
-    local('pybabel compile -f --domain=flask_user --directory flask_user/translations')
+        local('pybabel update -i docassemble_flask_user/translations/flask_user.pot --domain=docassemble_flask_user --output-dir docassemble_flask_user/translations -l '+code)
+    local('pybabel compile -f --domain=flask_user --directory docassemble_flask_user/translations')
 
 @task
 def docs():

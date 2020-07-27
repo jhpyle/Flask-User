@@ -2,8 +2,8 @@ import os
 from flask import Flask, render_template_string, request
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import login_required, SQLAlchemyAdapter, UserManager, UserMixin
-from flask_user import roles_required
+from docassemble_flask_user import login_required, SQLAlchemyAdapter, UserManager, UserMixin
+from docassemble_flask_user import roles_required
 
 
 # Use a Class-based config to avoid needing a 2nd file

@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template_string, request, url_for
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import current_user, login_required, UserManager, UserMixin, SQLAlchemyAdapter
+from docassemble_flask_user import current_user, login_required, UserManager, UserMixin, SQLAlchemyAdapter
 
 # Use a Class-based config to avoid needing a 2nd file
 class ConfigClass(object):

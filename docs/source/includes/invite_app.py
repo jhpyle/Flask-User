@@ -3,9 +3,9 @@ from flask import Flask, redirect, render_template_string, request, url_for
 from flask_babel import Babel
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import confirm_email_required, current_user, login_required, \
+from docassemble_flask_user import confirm_email_required, current_user, login_required, \
                         UserManager, UserMixin, SQLAlchemyAdapter
-from flask_user.signals import user_sent_invitation, user_registered
+from docassemble_flask_user.signals import user_sent_invitation, user_registered
 
 # Use a Class-based config to avoid needing a 2nd file
 # os.getenv() enables configuration through OS environment variables

@@ -1,8 +1,8 @@
 import os
 import pytest
 
-from flask_user.tests.tst_app import app as the_app, init_app
-from flask_user.tests.tst_utils import TstClient
+from docassemble_flask_user.tests.tst_app import app as the_app, init_app
+from docassemble_flask_user.tests.tst_utils import TstClient
 
 @pytest.fixture(scope='session')
 def app(request):

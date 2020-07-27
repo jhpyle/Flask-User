@@ -1,7 +1,7 @@
 from setuptools import setup
 import sys
 
-__version__ = '0.6.20'
+__version__ = '0.6.21'
 
 # Load pytest and pytest-runner only when needed:
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
@@ -15,9 +15,9 @@ def load_readme():
 
 
 setup(
-    name='Flask-User',
+    name='Docassemble-Flask-User',
     version=__version__,
-    url='http://github.com/lingthio/Flask-User',
+    url='http://github.com/jhpyle/Flask-User',
     license='BSD License',
     author='Ling Thio',
     author_email='ling.thio@gmail.com',
@@ -57,7 +57,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 
-    packages=['flask_user'],
+    packages=['docassemble_flask_user'],
     include_package_data=True,    # Tells setup to use MANIFEST.in
     zip_safe=False,    # Do not zip as it will make debugging harder
 

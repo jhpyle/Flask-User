@@ -24,7 +24,7 @@ install:
 
 # Run automated tests
 script:
-  - py.test --cov flask_user --cov-report term-missing --cov-config flask_user/tests/.coveragerc flask_user/tests/
+  - py.test --cov docassemble_flask_user --cov-report term-missing --cov-config docassemble_flask_user/tests/.coveragerc docassemble_flask_user/tests/
 
 # Submit coverage report to coveralls
 after_success:

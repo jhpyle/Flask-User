@@ -69,7 +69,8 @@ def lazy_gettext(string, **variables):
     except ImportError:
         return string % variables
 
-_ = lazy_gettext
+from docassemble.base.functions import LazyWord
+_ = LazyWord
 _home_page = _('Home Page')
 _profile_page = _('Profile Page')
 _special_page = _('Special Page')
