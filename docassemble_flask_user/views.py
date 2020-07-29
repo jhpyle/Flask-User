@@ -37,7 +37,7 @@ def render(*args, **kwargs):
 def confirm_email(token):
     """ Verify email confirmation token and activate the user account."""
     # Verify token
-    setup_translations()
+    setup_translation()
     user_manager = current_app.user_manager
     db_adapter = user_manager.db_adapter
     is_valid, has_expired, object_id = user_manager.verify_token(
@@ -90,7 +90,7 @@ def confirm_email(token):
 @confirm_email_required
 def change_password():
     """ Prompt for old password and new password and change the user's password."""
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -128,7 +128,7 @@ def change_password():
 @confirm_email_required
 def change_username():
     """ Prompt for new username and old password and change the user's username."""
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -168,7 +168,7 @@ def change_username():
 def email_action(id, action):
     """ Perform action 'action' on UserEmail object 'id'
     """
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -208,7 +208,7 @@ def email_action(id, action):
 
 def forgot_password():
     """Prompt for email and send reset password email."""
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -245,7 +245,7 @@ def login():
     if _call_or_get(current_user.is_authenticated) and user_manager.auto_login_at_login:
         return redirect(safe_next)
 
-    setup_translations()
+    setup_translation()
     # Initialize form
     login_form = user_manager.login_form(request.form)          # for login.html
     register_form = user_manager.register_form()                # for login_or_register.html
@@ -288,7 +288,7 @@ def login():
 
 def logout():
     """ Sign the user out."""
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
 
     # Send user_logged_out signal
@@ -308,7 +308,7 @@ def logout():
 @login_required
 @confirm_email_required
 def manage_emails():
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -332,7 +332,7 @@ def manage_emails():
 def register():
     """ Display registration form and create new User."""
 
-    setup_translations()
+    setup_translation()
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -491,7 +491,7 @@ def register():
 @login_required
 def invite():
     """ Allows users to send invitations to register an account """
-    setup_translations()
+    setup_translation()
     user_manager = current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -552,7 +552,7 @@ def resend_confirm_email():
     """Prompt for email and re-send email conformation email."""
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
-    setup_translations()
+    setup_translation()
 
     # Initialize form
     form = user_manager.resend_confirm_email_form(request.form)
@@ -578,7 +578,7 @@ def reset_password(token):
     # Verify token
     user_manager = current_app.user_manager
     db_adapter = user_manager.db_adapter
-    setup_translations()
+    setup_translation()
 
     if _call_or_get(current_user.is_authenticated):
         logout_user()
@@ -635,7 +635,7 @@ def reset_password(token):
 def unconfirmed():
     """ Prepare a Flash message and redirect to USER_UNCONFIRMED_ENDPOINT"""
     # Prepare Flash message
-    setup_translations()
+    setup_translation()
     url = request.script_root + request.path
     flash(_("You must confirm your email to access '%(url)s'.", url=url), 'error')
 
@@ -646,7 +646,7 @@ def unconfirmed():
 
 def unauthenticated():
     """ Prepare a Flash message and redirect to USER_UNAUTHENTICATED_ENDPOINT"""
-    setup_translations()
+    setup_translation()
     user_manager = current_app.user_manager
     # Prepare Flash message
     url = request.url
@@ -660,7 +660,7 @@ def unauthenticated():
 def unauthorized():
     """ Prepare a Flash message and redirect to USER_UNAUTHORIZED_ENDPOINT"""
     # Prepare Flash message
-    setup_translations()
+    setup_translation()
     url = request.script_root + request.path
     flash(_("You do not have permission to access '%(url)s'.", url=url), 'error')
 
@@ -672,7 +672,7 @@ def unauthorized():
 @login_required
 @confirm_email_required
 def user_profile():
-    setup_translations()
+    setup_translation()
     user_manager = current_app.user_manager
     return render(user_manager.user_profile_template)
 
