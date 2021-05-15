@@ -1,7 +1,7 @@
 from setuptools import setup
 import sys
 
-__version__ = '0.6.23'
+__version__ = '0.6.24'
 
 # Read long description from README.rst file
 def load_readme():
@@ -65,7 +65,7 @@ setup(
         'Flask-SQLAlchemy==2.4.4',
         'Flask-WTF==0.14.3',
         'passlib==1.7.4',
-        'pycryptodome==3.9.9',
+        'pycryptodome==3.10.1',
     ]
 )
 
