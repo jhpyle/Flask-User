@@ -1,11 +1,10 @@
 from setuptools import setup
-import sys
 
-__version__ = '0.6.24'
+__version__ = '0.6.25'
 
 # Read long description from README.rst file
 def load_readme():
-    with open('README.rst') as f:
+    with open('README.rst', 'r', encoding='utf-8') as f:
         return f.read()
 
 
@@ -68,4 +67,3 @@ setup(
         'pycryptodome==3.10.1',
     ]
 )
-

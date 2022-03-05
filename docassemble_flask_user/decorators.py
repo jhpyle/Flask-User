@@ -54,7 +54,7 @@ def roles_accepted(*role_names):
     return wrapper
 
 
-def roles_required(*role_names):
+def roles_required(*role_names, permission=None):
     """ This decorator ensures that the current user has all of the specified roles.
         Calls the unauthorized_view_function() when requirements fail.
         See also: UserMixin.has_roles()
@@ -69,8 +69,9 @@ def roles_required(*role_names):
 
             # User must have the required roles
             if not current_user.has_roles(*role_names):
-                # Redirect to the unauthorized page
-                return current_app.user_manager.unauthorized_view_function()
+                if permission is None or not current_user.can_do(permission):
+                    # Redirect to the unauthorized page
+                    return current_app.user_manager.unauthorized_view_function()
 
             # Call the actual view
             return func(*args, **kwargs)
