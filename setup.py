@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '0.6.25'
+__version__ = '0.6.26'
 
 # Read long description from README.rst file
 def load_readme():
@@ -57,13 +57,13 @@ setup(
 
     python_requires='>=2.6, !=3.0.*, !=3.1.*, !=3.2.*',   # Python 2.6, 2.7, 3.3+
     install_requires=[
-        'bcrypt==3.2.0',
-        'Flask==1.1.2',
-        'Flask-Login==0.5.0',
-        'Flask-Mail==0.9.1',
-        'Flask-SQLAlchemy==2.4.4',
-        'Flask-WTF==0.14.3',
-        'passlib==1.7.4',
-        'pycryptodome==3.10.1',
+        'bcrypt',
+        'Flask',
+        'Flask-Login',
+        'Flask-Mail',
+        'Flask-SQLAlchemy',
+        'Flask-WTF',
+        'passlib',
+        'pycryptodome',
     ]
 )
