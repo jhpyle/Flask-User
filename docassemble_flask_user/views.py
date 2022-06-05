@@ -91,6 +91,8 @@ def confirm_email(token):
 def change_password():
     """ Prompt for old password and new password and change the user's password."""
     setup_translation()
+    if not (current_app.config['ALLOW_CHANGING_PASSWORD'] or current_user.has_roles(['admin', 'developer'])):
+        return ('File not found', 404)
     user_manager =  current_app.user_manager
     db_adapter = user_manager.db_adapter
 
@@ -220,7 +222,7 @@ def forgot_password():
         email = form.email.data
         user, user_email = user_manager.find_user_by_email(email)
 
-        if user:
+        if user and (current_app.config['ALLOW_CHANGING_PASSWORD'] or user.has_roles(['admin', 'developer'])):
             user_manager.send_reset_password_email(email)
 
         # Prepare one-time system message

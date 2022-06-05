@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '0.6.26'
+__version__ = '0.6.27'
 
 # Read long description from README.rst file
 def load_readme():
