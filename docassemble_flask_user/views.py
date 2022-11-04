@@ -300,7 +300,8 @@ def logout():
     logout_user()
 
     # Prepare one-time system message
-    flash(_('You have signed out successfully.'), 'success')
+    if current_app.config['FLASH_LOGIN_MESSAGES']:
+        flash(_('You have signed out successfully.'), 'success')
 
     # Redirect to logout_next endpoint or '/'
     safe_next = _get_safe_next_param('next', user_manager.after_logout_endpoint)
@@ -698,7 +699,8 @@ def _send_registered_email(user, user_email, require_email_confirmation=True):
             email = user_email.email if user_email else user.email
             flash(_('A confirmation email has been sent to %(email)s with instructions to complete your registration.', email=email), 'success')
         else:
-            flash(_('You have registered successfully.'), 'success')
+            if current_app.config['FLASH_LOGIN_MESSAGES']:
+                flash(_('You have registered successfully.'), 'success')
 
 
 def _send_confirm_email(user, user_email):
@@ -746,7 +748,8 @@ def _do_login_user(user, safe_next, remember_me=False):
     signals.user_logged_in.send(current_app._get_current_object(), user=user)
 
     # Prepare one-time system message
-    flash(_('You have signed in successfully.'), 'success')
+    if current_app.config['FLASH_LOGIN_MESSAGES']:
+        flash(_('You have signed in successfully.'), 'success')
 
     # Redirect to 'safe_next' URL
     return redirect(safe_next)

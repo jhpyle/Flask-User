@@ -28,7 +28,7 @@ from .decorators import *
 from .signals import *
 
 
-__version__ = '0.6.27'
+__version__ = '0.6.28'
 
 def _call_or_get(function_or_property):
     return function_or_property() if callable(function_or_property) else function_or_property
