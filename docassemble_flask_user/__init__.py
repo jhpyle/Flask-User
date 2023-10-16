@@ -28,7 +28,7 @@ from .decorators import *
 from .signals import *
 
 
-__version__ = '0.6.28'
+__version__ = '0.6.29'
 
 def _call_or_get(function_or_property):
     return function_or_property() if callable(function_or_property) else function_or_property
@@ -365,6 +365,7 @@ class UserManager(object):
 class UserMixin(LoginUserMixin):
     """ This class adds methods to the User model class required by Flask-Login and Flask-User."""
 
+    @property
     def is_active(self):
         if hasattr(self, 'active'):
             return self.active
