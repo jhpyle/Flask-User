@@ -4,27 +4,11 @@
     :author: Ling Thio (ling.thio@gmail.com)
     :license: Simplified BSD License, see LICENSE.txt for more details."""
 
-from flask import _request_ctx_stack, current_app
+from flask import current_app
 
 # To avoid requiring the Flask-Babel, Babel and speaklater packages,
 # we check if the app has initialized Flask-Babel or not
 def get_translations():
-    # If there is no context:  return None
-    ctx = _request_ctx_stack.top
-    if not ctx:
-        return None
-
-    # If context exists and contains a cached value, return cached value
-    if hasattr(ctx, 'flask_user_translations'):
-        return ctx.flask_user_translations
-
-    # If App has not initialized Flask-Babel: return None
-    app_has_initalized_flask_babel = 'babel' in current_app.extensions
-    if not app_has_initalized_flask_babel:  # pragma no cover
-        ctx.flask_user_translations = None
-        return ctx.flask_user_translations
-
-    # Prepare search properties
     import os
     import gettext as python_gettext
     from flask_babel import get_locale, get_translations, support
