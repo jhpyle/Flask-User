@@ -7,6 +7,7 @@
 from __future__ import print_function
 from datetime import datetime
 from flask_login import current_user
+from sqlalchemy import select
 
 class DBAdapter(object):
     """ This object is used to shield Flask-User from ORM specific functions.
@@ -37,13 +38,13 @@ class SQLAlchemyAdapter(DBAdapter):
 
     def get_object(self, ObjectClass, id):
         """ Retrieve one object specified by the primary key 'pk' """
-        return ObjectClass.query.get(id)
+        return self.db.session.get(ObjectClass, id)
 
     def find_all_objects(self, ObjectClass, **kwargs):
         """ Retrieve all objects matching the case sensitive filters in 'kwargs'. """
 
         # Convert each name/value pair in 'kwargs' into a filter
-        query = ObjectClass.query
+        stmt = select(ObjectClass)
         for field_name, field_value in kwargs.items():
 
             # Make sure that ObjectClass has a 'field_name' property
@@ -52,17 +53,17 @@ class SQLAlchemyAdapter(DBAdapter):
                 raise KeyError("SQLAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
 
             # Add a filter to the query
-            query = query.filter(field.in_((field_value,)))
+            stmt = stmt.where(field.in_((field_value,)))
 
         # Execute query
-        return query.all()
+        return self.db.session.scalars(stmt).all()
 
 
     def find_first_object(self, ObjectClass, **kwargs):
         """ Retrieve the first object matching the case sensitive filters in 'kwargs'. """
 
         # Convert each name/value pair in 'kwargs' into a filter
-        query = ObjectClass.query
+        stmt = select(ObjectClass)
         for field_name, field_value in kwargs.items():
 
             # Make sure that ObjectClass has a 'field_name' property
@@ -71,16 +72,16 @@ class SQLAlchemyAdapter(DBAdapter):
                 raise KeyError("SQLAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
 
             # Add a case sensitive filter to the query
-            query = query.filter(field==field_value)  # case sensitive!!
+            stmt = stmt.where(field==field_value)  # case sensitive!!
 
         # Execute query
-        return query.first()
+        return self.db.session.scalars(stmt).first()
 
     def ifind_first_object(self, ObjectClass, **kwargs):
         """ Retrieve the first object matching the case insensitive filters in 'kwargs'. """
 
         # Convert each name/value pair in 'kwargs' into a filter
-        query = ObjectClass.query
+        stmt = select(ObjectClass)
         for field_name, field_value in kwargs.items():
 
             # Make sure that ObjectClass has a 'field_name' property
@@ -89,10 +90,10 @@ class SQLAlchemyAdapter(DBAdapter):
                 raise KeyError("SQLAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
 
             # Add a case sensitive filter to the query
-            query = query.filter(field.ilike(field_value))  # case INsensitive!!
+            stmt = stmt.where(field.ilike(field_value))  # case INsensitive!!
 
         # Execute query
-        return query.first()
+        return self.db.session.scalars(stmt).first()
 
     def add_object(self, ObjectClass, **kwargs):
         """ Add an object of class 'ObjectClass' with fields and values specified in '**kwargs'. """

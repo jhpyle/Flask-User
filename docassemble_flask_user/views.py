@@ -10,7 +10,7 @@ from flask_login import current_user, login_user, logout_user
 from .decorators import confirm_email_required, login_required
 from . import emails
 from . import signals
-from docassemble.base.functions import LazyWord as _
+from docassemble.base.language.words import LazyWord as _
 from docassemble.webapp.translations import setup_translation
 
 # Python version specific imports

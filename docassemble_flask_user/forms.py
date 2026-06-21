@@ -16,7 +16,7 @@ except ImportError:
 
 from wtforms import BooleanField, HiddenField, PasswordField, SubmitField, StringField
 from wtforms import validators, ValidationError
-from docassemble.base.functions import LazyWord as _
+from docassemble.base.language.words import LazyWord as _
 
 # **************************
 # ** Validation Functions **

@@ -4,7 +4,9 @@
     :author: Ling Thio (ling.thio@gmail.com)
     :license: Simplified BSD License, see LICENSE.txt for more details."""
 
-from passlib.context import CryptContext
+# from passlib.context import CryptContext
+from pwdlib import PasswordHash
+from pwdlib.hashers.bcrypt import BcryptHasher
 from flask import Blueprint, current_app, url_for, render_template
 from flask_login import LoginManager, UserMixin as LoginUserMixin
 from docassemble_flask_user.db_adapters import DBAdapter
@@ -28,7 +30,7 @@ from .decorators import *
 from .signals import *
 
 
-__version__ = '0.6.30'
+__version__ = '0.6.32'
 
 def _call_or_get(function_or_property):
     return function_or_property() if callable(function_or_property) else function_or_property
@@ -162,8 +164,9 @@ class UserManager(object):
 
         # Create password_crypt_context if needed
         if not self.password_crypt_context:
-            self.password_crypt_context = CryptContext(
-                    schemes=[app.config['USER_PASSWORD_HASH']])
+            self.password_crypt_context = PasswordHash([BcryptHasher()])
+            # self.password_crypt_context = CryptContext(
+            #         schemes=[app.config['USER_PASSWORD_HASH']])
 
         # Setup Flask-Login
         self.setup_login_manager(app)

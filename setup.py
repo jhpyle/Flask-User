@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '0.6.30'
+__version__ = '0.6.32'
 
 # Read long description from README.rst file
 def load_readme():
@@ -63,7 +63,7 @@ setup(
         'Flask-Mail',
         'Flask-SQLAlchemy',
         'Flask-WTF',
-        'passlib',
+        'pwdlib',
         'pycryptodome',
     ]
 )

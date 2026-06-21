@@ -22,7 +22,8 @@ def hash_password(user_manager, password):
     if user_manager.password_hash_mode == 'Flask-Security':
         password = generate_sha512_hmac(user_manager.password_salt, password)
     # Use passlib to hash password
-    hashed_password = user_manager.password_crypt_context.encrypt(password)
+    # hashed_password = user_manager.password_crypt_context.encrypt(password)
+    hashed_password = user_manager.password_crypt_context.hash(password)
 
     return hashed_password
 
@@ -38,4 +39,3 @@ def verify_password(user_manager, password, hashed_password):
         password = generate_sha512_hmac(user_manager.password_salt, password)
 
     return user_manager.password_crypt_context.verify(password, hashed_password)
-
